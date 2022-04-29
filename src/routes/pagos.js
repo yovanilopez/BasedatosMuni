@@ -4,7 +4,7 @@ const router = express.Router();
 
 const mysqlConnection = require('../configurations/db-conf');
 
-//Obtener persona
+//Obtener pagos
 router.get("/pagos", (req, res) => {
     console.log("Obteniendo Lista pagos");
     mysqlConnection.query('Select * from pagos', (err, rows, fields) => {
@@ -17,12 +17,12 @@ router.get("/pagos", (req, res) => {
     });
 });
 
-//Crear persona
+//Crear pago
 router.post('/pagos', (req, res) => {
     let per = req.body;
     console.log('Creando pagos')
-mysqlConnection.query('insert into pagos (Multa,Moras,PagoLinea) values (?,?,?)',
-        [per.Multa, per.Moras,per.PagoLinea], (err, result) => {
+mysqlConnection.query('insert into pagos (Multa,TipoInfraccion,FechaPago,Descripcion,PagoLinea) values (?,?,?,?,?)',
+        [per.Multa, per.TipoInfraccion,per.FechaPago,per.Descripcion,per.PagoLinea], (err, result) => {
             if (!err) {
                 console.log(result);
                 res.status(201).send("Creado Correctamente");
@@ -33,7 +33,7 @@ mysqlConnection.query('insert into pagos (Multa,Moras,PagoLinea) values (?,?,?)'
         })
 });
 
-//Obtener persona por id
+//Obtener pago por id
 router.get("/pagos/:IdPagos", (req, res) => {
     console.log("Obteniendo Pagos");
     mysqlConnection.query('Select * from pagos where IdPagos= ?', [req.params.IdPagos], (err, rows, fields) => {
@@ -47,13 +47,13 @@ router.get("/pagos/:IdPagos", (req, res) => {
 });
 
 
-//Actualizar persona
-router.put("/pagos/:IdPagos", (req, res) => {
-    console.log("Actualizando Pago");
+//Actualizar pago
+router.put("/Pagos/:IdPagos", (req, res) => {
+    console.log("Actualizando Pagos");
     let est = req.body;
     console.log(est);
-    mysqlConnection.query('update pagos set  Multa = ?, Moras = ?, PagoLinea = ? where IdPagos= ?',
-        [ est.Multa, est.Moras,est.PagoLinea, req.params.IdPagos], (err, result) => {
+    mysqlConnection.query('update Pagos set  Multa = ?, TipoInfraccion = ?, FechaPago = ?,Descripcion = ?,PagoLinea = ?   where IdPagos= ?',
+        [ est.Multa, est.TipoInfraccion,est.FechaPago,est.Descripcion,est.PagoLinea, req.params.IdPagos], (err, result) => {
             if (!err) {
                 console.log(result);
 
@@ -65,7 +65,7 @@ router.put("/pagos/:IdPagos", (req, res) => {
         });
 });
 
-//Eliminar persona
+//Eliminar pago
 router.delete("/pagos/:IdPagos", (req, res) => {
     console.log("Eliminando Pago");
     mysqlConnection.query('delete from pagos where pagos.IdPagos = ?',

@@ -4,7 +4,7 @@ const router = express.Router();
 
 const mysqlConnection = require('../configurations/db-conf');
 
-//Obtener persona
+//Obtener evidencias
 router.get("/evidencias", (req, res) => {
     console.log("Obteniendo Lista evidencias");
     mysqlConnection.query('Select * from evidencias', (err, rows, fields) => {
@@ -18,7 +18,7 @@ router.get("/evidencias", (req, res) => {
 });
 
 
-//Crear persona
+//Crear evidencia
 router.post('/evidencias', (req, res) => {
     let per = req.body;
     console.log('Creando evidencias')
@@ -34,7 +34,7 @@ mysqlConnection.query('insert into evidencias (Evidencia,NumeroVehiculo) values 
         })
 });
 
-//Obtener persona por id
+//Obtener evidencia por id
 router.get("/evidencias/:IdEvidencias", (req, res) => {
     console.log("Obteniendo evidencias");
     mysqlConnection.query('Select * from evidencias where IdEvidencias= ?', [req.params.IdEvidencias], (err, rows, fields) => {
@@ -48,7 +48,7 @@ router.get("/evidencias/:IdEvidencias", (req, res) => {
 });
 
 
-//Actualizar persona
+//Actualizar evidencia
 router.put("/evidencias/:IdEvidencias", (req, res) => {
     console.log("Actualizando evidencias");
     let est = req.body;
@@ -66,7 +66,7 @@ router.put("/evidencias/:IdEvidencias", (req, res) => {
         });
 });
 
-//Eliminar persona
+//Eliminar evidencia
 router.delete("/evidencias/:IdEvidencias", (req, res) => {
     console.log("Eliminando evidencias");
     mysqlConnection.query('delete from Evidencias where evidencias.IdEvidencias = ?',

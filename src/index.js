@@ -15,6 +15,7 @@ app.use(require('./routes/pagos'));
 app.use(require('./routes/evidencias'));
 app.use(require('./routes/revision'));
 app.use(require('./routes/vehiculover'));
+app.use(require('./routes/turno'));
 
 
 

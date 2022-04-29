@@ -4,7 +4,7 @@ const mysqlConnection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'Rosa',
-    database: 'municipalidad',
+    database: 'municipalidapinula',
     multipleStatements: true
   });
 
@@ -13,7 +13,7 @@ const mysqlConnection = mysql.createConnection({
       console.error(err);
       return;
     } else {
-      console.log('Ahora estamos en Linea :D');
+      console.log('estamos en Linea');
     }
   });
 

@@ -5,7 +5,7 @@ const router = express.Router();
 const mysqlConnection = require('../configurations/db-conf');
 
 
-
+//crear persona
 router.post('/persona', (req, res) => {
     let per = req.body;
     console.log('Creando persona')

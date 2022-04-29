@@ -5,9 +5,9 @@ const router = express.Router();
 const mysqlConnection = require('../configurations/db-conf');
 
 //Obtener revision
-router.get("/revision", (req, res) => {
-    console.log("Obteniendo Lista revision");
-    mysqlConnection.query('Select * from revision', (err, rows, fields) => {
+router.get("/turno", (req, res) => {
+    console.log("Obteniendo Lista turno");
+    mysqlConnection.query('Select * from turno', (err, rows, fields) => {
         if (!err) {
             res.send(rows);
         } else {
@@ -18,11 +18,11 @@ router.get("/revision", (req, res) => {
 });
 
 //Crear revision
-router.post('/revision', (req, res) => {
+router.post('/turno', (req, res) => {
     let per = req.body;
-    console.log('Creando revision')
-mysqlConnection.query('insert into revision (Luces,Identificacion,Papeles) values (?,?,?)',
-        [per.Luces, per.Identificacion,per.Papeles], (err, result) => {
+    console.log('Creando turno')
+mysqlConnection.query('insert into turno (FechaInicio,FechaFin,NumeroTurno) values (?,?,?)',
+        [per.FechaInicio, per.FechaFin,per.NumeroTurno], (err, result) => {
             if (!err) {
                 console.log(result);
                 res.status(201).send("Revision Correctamente");
@@ -34,9 +34,9 @@ mysqlConnection.query('insert into revision (Luces,Identificacion,Papeles) value
 });
 
 //obtener revision por Id
-router.get("/revision/:IdRevision", (req, res) => {
-    console.log("Obteniendo revision");
-    mysqlConnection.query('Select * from revision where IdRevision= ?', [req.params.IdRevision], (err, rows, fields) => {
+router.get("/turno/:IdTurno", (req, res) => {
+    console.log("Obteniendo turno");
+    mysqlConnection.query('Select * from turno where IdTurno= ?', [req.params.IdTurno], (err, rows, fields) => {
         if (!err) {
             res.send(rows);
         } else {
@@ -47,16 +47,16 @@ router.get("/revision/:IdRevision", (req, res) => {
 });
 
 //Actualizar revision
-router.put("/revision/:IdRevision", (req, res) => {
-    console.log("Actualizando revision");
+router.put("/turno/:IdTurno", (req, res) => {
+    console.log("Actualizando turno");
     let est = req.body;
     console.log(est);
-    mysqlConnection.query('update revision set  Luces = ?, Identificacion = ? , Papeles = ? where IdRevision= ?',
-        [ est.Luces, est.Identificacion,est.Papeles, req.params.IdRevision], (err, result) => {
+    mysqlConnection.query('update turno set  FechaInicio = ?, FechaFin = ? , NumeroTurno = ? where IdTurno= ?',
+        [ est.FechaInicio, est.FechaFin,est.NumeroTurno, req.params.IdTurno], (err, result) => {
             if (!err) {
                 console.log(result);
 
-                res.status(202).send("revision Actualizado ");
+                res.status(202).send("turno Actualizado ");
             } else {
                 console.log(err);
                 res.send('error' + err);
@@ -65,14 +65,14 @@ router.put("/revision/:IdRevision", (req, res) => {
 });
 
 //Eliminar revision
-router.delete("/revision/:IdRevision", (req, res) => {
-    console.log("Eliminando Revision");
-    mysqlConnection.query('delete from Revision where revision.IdRevision = ?',
+router.delete("/turno/:IdTurno", (req, res) => {
+    console.log("Eliminando turno");
+    mysqlConnection.query('delete from turno where turno.Idturno = ?',
         [req.params.IdRevision], (err, result) => {
             if (!err) {
                 console.log(result);
 
-                res.status(202).send("revision Borrado");
+                res.status(202).send("turno Borrado");
             } else {
                 console.log(err);
                 res.send('error' + err);
