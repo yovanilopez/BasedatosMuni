@@ -10,8 +10,8 @@ const mysqlConnection = require('../configurations/db-conf');
 router.post('/vehiculo', (req, res) => {
     let per = req.body;
     console.log('Creando persona')
-mysqlConnection.query('insert into vehiculo (NumeroVehiculo,NumeroPlaca,Color,TurnoTransitar,NumeroLinea,IdPersona,IdEvidencias,IdPagos,IdRevision,IdTurno) values (?,?,?,?,?,?,?,?,?)',
-        [per.NumeroVehiculo, per.NumeroPlaca,per.Color,per.TurnoTransitar,per.NumeroLinea,per.IdPersona,per.IdEvidencias,per.IdPagos,per.IdRevision,per.IdTurno], (err, result) => {
+mysqlConnection.query('insert into vehiculo (NumeroVehiculo,NumeroPlaca,Color,NumeroLinea,IdPersona,IdEvidencias,IdPagos,IdRevision,IdTurno) values (?,?,?,?,?,?,?,?,?)',
+        [per.NumeroVehiculo, per.NumeroPlaca,per.Color,per.NumeroLinea,per.IdPersona,per.IdEvidencias,per.IdPagos,per.IdRevision,per.IdTurno], (err, result) => {
             if (!err) {
                 console.log(result);
                 res.status(201).send("Persona Creado ");
@@ -53,8 +53,8 @@ router.put("/vehiculo/:NumeroPlaca", (req, res) => {
     console.log("Actualizando vehiculo");
     let est = req.body;
     console.log(est);
-    mysqlConnection.query('update vehiculo set  NumeroVehiculo = ?, Color = ?, TurnoTransitar = ?, NumeroLinea = ?,IdPersona=?,IdEvidencias=?,IdPagoS=?,IdRevision=?,IdTurno=?  where NumeroPlaca= ?',
-        [ est.NumeroVehiculo, est.Color,est.TurnoTransitar,est.NumeroLinea,est.IdPersona,est.IdEvidencias,est.IdPagos,est.IdRevision,est.IdTurno, req.params.NumeroPlaca], (err, result) => {
+    mysqlConnection.query('update vehiculo set  NumeroVehiculo = ?, Color = ?, NumeroLinea = ?,IdPersona=?,IdEvidencias=?,IdPagoS=?,IdRevision=?,IdTurno=?  where NumeroPlaca= ?',
+        [ est.NumeroVehiculo, est.Color,est.NumeroLinea,est.IdPersona,est.IdEvidencias,est.IdPagos,est.IdRevision,est.IdTurno, req.params.NumeroPlaca], (err, result) => {
             if (!err) {
                 console.log(result);
 
