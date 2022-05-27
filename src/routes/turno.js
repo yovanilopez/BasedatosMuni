@@ -68,7 +68,7 @@ router.put("/turno/:IdTurno", (req, res) => {
 router.delete("/turno/:IdTurno", (req, res) => {
     console.log("Eliminando turno");
     mysqlConnection.query('delete from turno where turno.Idturno = ?',
-        [req.params.IdRevision], (err, result) => {
+        [req.params.IdTurno], (err, result) => {
             if (!err) {
                 console.log(result);
 

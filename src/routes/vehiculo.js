@@ -14,7 +14,7 @@ mysqlConnection.query('insert into vehiculo (NumeroVehiculo,NumeroPlaca,Color,Nu
         [per.NumeroVehiculo, per.NumeroPlaca,per.Color,per.NumeroLinea,per.IdPersona,per.IdEvidencias,per.IdPagos,per.IdRevision,per.IdTurno], (err, result) => {
             if (!err) {
                 console.log(result);
-                res.status(201).send("Persona Creado ");
+                res.status(201).send("vehiculo Creado ");
             } else {
                 console.log(err);
                 res.send('Error' + err);
