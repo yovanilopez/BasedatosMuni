@@ -8,9 +8,9 @@ const mysqlConnection = require('../configurations/db-conf');
 
 
 //Obtener persona
-router.get("/tablamultas", (req, res) => {
+router.get("/vehiculo-persona-pagos", (req, res) => {
     console.log("Obteniendo Lista tablamultas");
-    mysqlConnection.query('CALL tablamultas', (err, rows, fields) => {
+    mysqlConnection.query('select vehiculo.NumeroPlaca,vehiculo.IdVehiculo, persona.Nombre,pagos.multa from vehiculo inner join persona on vehiculo.IdPersona=persona.IdPersona inner join pagos on vehiculo.IdPagos= pagos.IdPagos;', (err, rows, fields) => {
         if (!err) {
             res.send(rows);
         } else {
